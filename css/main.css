@@ -4,11 +4,16 @@
     color: white;
     padding: 25px 40px;
     position: fixed;
-    top: 443px;
-    left: 530px;
+    top: 600px;
+    left: 180px;
 }
 
 #btnNewGame:hover {
     background-color: crimson;
     cursor: pointer;
+}
+
+.bienvenida {
+    position: relative;
+    left: 140px;
 }
