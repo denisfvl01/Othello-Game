@@ -1,0 +1,14 @@
+#btnNewGame {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 25px 40px;
+    position: fixed;
+    top: 443px;
+    left: 530px;
+}
+
+#btnNewGame:hover {
+    background-color: crimson;
+    cursor: pointer;
+}
