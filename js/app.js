@@ -85,18 +85,15 @@ function dibujarMatriz() {
 };
 
 function nuevoJuego() {
-<<<<<<< HEAD
+
     turnoNegro = true;
-=======
->>>>>>> 6c61e8e40265384ec5c970fdb1ab3ad6ca648493
+
     generarMatriz();
     generarFichasNegras();
     generarFichasBlancas();
     dibujarMatriz();
-<<<<<<< HEAD
+
     turnos();
-=======
->>>>>>> 6c61e8e40265384ec5c970fdb1ab3ad6ca648493
 }
 
 function movimiento(evento) {
