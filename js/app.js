@@ -37,6 +37,7 @@ FichaNegra.imagen.src = FichaNegra.url;
 
 
 tablero.imagen.addEventListener("load", function() {
+    tablero.cargaOk = true;
     dibujar();
 });
 
@@ -46,9 +47,10 @@ generarFichasBlancas();
 dibujar();
 
 function dibujar() {
-    lapiz.drawImage(tablero.imagen, 0, 0);
-    dibujarMatriz();
-}
+    if (tablero.cargaOk) {
+        lapiz.drawImage(tablero.imagen, 0, 0);
+    }
+};
 
 function generarMatriz() {
     for (let row = 0; row < matriz.length; row++) {
@@ -57,17 +59,17 @@ function generarMatriz() {
             matriz[row][col] = 'x';
         }
     }
-}
+};
 
 function generarFichasNegras() {
     matriz[180 / 60][180 / 60] = 'ficha-negra';
     matriz[240 / 60][240 / 60] = 'ficha-negra';
-}
+};
 
 function generarFichasBlancas() {
     matriz[180 / 60][240 / 60] = 'ficha-blanca';
     matriz[240 / 60][180 / 60] = 'ficha-blanca';
-}
+};
 
 function dibujarMatriz() {
     for (let row = 0; row < matriz.length; row++) {
@@ -80,6 +82,13 @@ function dibujarMatriz() {
             }
         }
     }
+};
+
+function nuevoJuego() {
+    generarMatriz();
+    generarFichasNegras();
+    generarFichasBlancas();
+    dibujarMatriz();
 }
 
 function movimiento(evento) {
