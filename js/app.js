@@ -4,7 +4,7 @@ var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPACIOX = 8;
 const ESPACIOY = 9;
-// const 
+var turnoNegro = false; 
 
 var tablero = {
     url: './imagenes/tablero.png',
@@ -85,10 +85,15 @@ function dibujarMatriz() {
 };
 
 function nuevoJuego() {
+
+    turnoNegro = true;
+
     generarMatriz();
     generarFichasNegras();
     generarFichasBlancas();
     dibujarMatriz();
+
+    turnos();
 }
 
 function movimiento(evento) {
@@ -110,4 +115,13 @@ function movimiento(evento) {
     //         alert('Enter');
     //         break;
     // }
+}
+function turnos(){
+ if (turnoNegro){
+     alert('Mueve ficha negra');
+     //turnoNegro();
+ }else{
+     alert('Mueve ficha blanca');
+     //turnoBlanco();
+ }
 }
