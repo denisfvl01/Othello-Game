@@ -4,14 +4,10 @@ var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPACIOX = 8;
 const ESPACIOY = 9;
-<<<<<<< HEAD
-var turnoNegro = false;
-=======
 const DIFERENCIA = 60;
-var turno = false; 
+var turno = false;
 var x = 0;
 var y = 0;
->>>>>>> 862ec0c8cc71817788672fa5dbe0ab57de6b298d
 
 var tablero = {
     url: './imagenes/tablero.png',
@@ -127,38 +123,29 @@ function movimiento(evento) {
 }
 
 function turnos() {
-<<<<<<< HEAD
-    if (turnoNegro) {
-        alert('Mueve ficha negra');
-        //turnoNegro();
+    if (turno) {
+        turnoNegro();
+
     } else {
-        alert('Mueve ficha blanca');
-        //turnoBlanco();
+        turnoBlanco();
     }
 }
-=======
- if (turno){
-     turnoNegro();
 
- }else{
-     turnoBlanco();
- }
-}
 function turnoNegro() {
-         alert('Mueve ficha negra');
-         lapiz.drawImage(FichaNegra.imagen,0+ESPACIOX,0+ESPACIOY);
+    alert('Mueve ficha negra');
+    lapiz.drawImage(FichaNegra.imagen, 0 + ESPACIOX, 0 + ESPACIOY);
 
 }
+
 function turnoBlanco() {
-         alert('Mueve ficha blanca');
-         lapiz.drawImage(FichaBlanca.imagen,0+ESPACIOX,0+ESPACIOY);
+    alert('Mueve ficha blanca');
+    lapiz.drawImage(FichaBlanca.imagen, 0 + ESPACIOX, 0 + ESPACIOY);
 }
 
-function iniciarFichaNegra(){
-        var row=0;
-        var col=0;
-        if(matriz[row][col]=='x'){
-            matriz[row][col] = 'FN';
-        }
+function iniciarFichaNegra() {
+    var row = 0;
+    var col = 0;
+    if (matriz[row][col] == 'x') {
+        matriz[row][col] = 'FN';
+    }
 }
->>>>>>> 862ec0c8cc71817788672fa5dbe0ab57de6b298d
