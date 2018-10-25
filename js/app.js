@@ -4,7 +4,10 @@ var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPACIOX = 8;
 const ESPACIOY = 9;
-var turnoNegro = false; 
+const DIFERENCIA = 60;
+var turno = false; 
+var x = 0;
+var y = 0;
 
 var tablero = {
     url: './imagenes/tablero.png',
@@ -42,14 +45,15 @@ tablero.imagen.addEventListener("load", function() {
 });
 
 generarMatriz();
-generarFichasNegras();
-generarFichasBlancas();
+// generarFichasNegras();
+// generarFichasBlancas();
 dibujar();
 
 function dibujar() {
     if (tablero.cargaOk) {
         lapiz.drawImage(tablero.imagen, 0, 0);
     }
+    dibujarMatriz();
 };
 
 function generarMatriz() {
@@ -62,23 +66,23 @@ function generarMatriz() {
 };
 
 function generarFichasNegras() {
-    matriz[180 / 60][180 / 60] = 'ficha-negra';
-    matriz[240 / 60][240 / 60] = 'ficha-negra';
+    matriz[180 / DIFERENCIA][180 / DIFERENCIA] = 'FN';
+    matriz[240 / DIFERENCIA][240 / DIFERENCIA] = 'FN';
 };
 
 function generarFichasBlancas() {
-    matriz[180 / 60][240 / 60] = 'ficha-blanca';
-    matriz[240 / 60][180 / 60] = 'ficha-blanca';
+    matriz[180 / DIFERENCIA][240 / DIFERENCIA] = 'FB';
+    matriz[240 / DIFERENCIA][180 / DIFERENCIA] = 'FB';
 };
 
 function dibujarMatriz() {
     for (let row = 0; row < matriz.length; row++) {
         for (let col = 0; col < matriz.length; col++) {
-            if (matriz[row][col] == 'ficha-negra') {
-                lapiz.drawImage(FichaNegra.imagen, (60 * col) + ESPACIOX, (60 * row) + ESPACIOY);
+            if (matriz[row][col] == 'FN') {
+                lapiz.drawImage(FichaNegra.imagen, (DIFERENCIA * col) + ESPACIOX, (DIFERENCIA * row) + ESPACIOY);
             }
-            if (matriz[row][col] == 'ficha-blanca') {
-                lapiz.drawImage(FichaBlanca.imagen, (60 * col) + ESPACIOX, (60 * row) + ESPACIOY);
+            if (matriz[row][col] == 'FB') {
+                lapiz.drawImage(FichaBlanca.imagen, (DIFERENCIA * col) + ESPACIOX, (DIFERENCIA * row) + ESPACIOY);
             }
         }
     }
@@ -86,42 +90,60 @@ function dibujarMatriz() {
 
 function nuevoJuego() {
 
-    turnoNegro = true;
+    turno = true;
 
     generarMatriz();
     generarFichasNegras();
     generarFichasBlancas();
+    dibujar();
     dibujarMatriz();
-
     turnos();
 }
 
 function movimiento(evento) {
-    // switch (evento.keyCode) {
-    //     case tecla.LEFT:
-    //         alert("Izquierda");
+    switch (evento.keyCode) {
+        case tecla.LEFT:
+            alert("Izquierda");
 
-    //         break;
-    //     case tecla.UP:
-    //         alert('arriba');
-    //         break;
-    //     case tecla.RIGHT:
-    //         alert('derecha');
-    //         break;
-    //     case tecla.DOWN:
-    //         alert('Abajo');
-    //         break;
-    //     case tecla.ENTER:
-    //         alert('Enter');
-    //         break;
-    // }
+            break;
+        case tecla.UP:
+            alert('arriba');
+            break;
+        case tecla.RIGHT:
+            alert('derecha');
+            break;
+        case tecla.DOWN:
+            alert('Abajo');
+            break;
+        case tecla.ENTER:
+            iniciarFichaNegra();
+            console.log(matriz);
+            break;
+    }
 }
-function turnos(){
- if (turnoNegro){
-     alert('Mueve ficha negra');
-     //turnoNegro();
+
+function turnos() {
+ if (turno){
+     turnoNegro();
+
  }else{
-     alert('Mueve ficha blanca');
-     //turnoBlanco();
+     turnoBlanco();
  }
+}
+function turnoNegro() {
+         alert('Mueve ficha negra');
+         lapiz.drawImage(FichaNegra.imagen,0+ESPACIOX,0+ESPACIOY);
+
+}
+function turnoBlanco() {
+         alert('Mueve ficha blanca');
+         lapiz.drawImage(FichaBlanca.imagen,0+ESPACIOX,0+ESPACIOY);
+}
+
+function iniciarFichaNegra(){
+        var row=0;
+        var col=0;
+        if(matriz[row][col]=='x'){
+            matriz[row][col] = 'FN';
+        }
 }
