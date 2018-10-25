@@ -17,3 +17,8 @@
     position: relative;
     left: 140px;
 }
+
+body {
+    width: 50%;
+    height: 100%;
+}

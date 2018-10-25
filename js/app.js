@@ -4,10 +4,12 @@ var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPACIOX = 8;
 const ESPACIOY = 9;
-const DIFERENCIA = 60;
+const DIMENSION = 60;
 var turno = false;
 var x = 0;
 var y = 0;
+var col;
+var row;
 
 var tablero = {
     url: './imagenes/tablero.png',
@@ -44,108 +46,130 @@ tablero.imagen.addEventListener("load", function() {
     dibujar();
 });
 
-generarMatriz();
-// generarFichasNegras();
-// generarFichasBlancas();
 dibujar();
 
 function dibujar() {
-    if (tablero.cargaOk) {
+    if (tablero.cargaOk)
         lapiz.drawImage(tablero.imagen, 0, 0);
-    }
-    dibujarMatriz();
 };
 
 function generarMatriz() {
-    for (let row = 0; row < matriz.length; row++) {
+    for (row = 0; row < matriz.length; row++) {
         matriz[row] = new Array(8);
-        for (let col = 0; col < matriz[row].length; col++) {
+        for (col = 0; col < matriz.length; col++) {
             matriz[row][col] = 'x';
         }
     }
 };
 
 function generarFichasNegras() {
-    matriz[180 / DIFERENCIA][180 / DIFERENCIA] = 'FN';
-    matriz[240 / DIFERENCIA][240 / DIFERENCIA] = 'FN';
+    matriz[180 / DIMENSION][180 / DIMENSION] = 'FN';
+    matriz[240 / DIMENSION][240 / DIMENSION] = 'FN';
 };
 
 function generarFichasBlancas() {
-    matriz[180 / DIFERENCIA][240 / DIFERENCIA] = 'FB';
-    matriz[240 / DIFERENCIA][180 / DIFERENCIA] = 'FB';
+    matriz[180 / DIMENSION][240 / DIMENSION] = 'FB';
+    matriz[240 / DIMENSION][180 / DIMENSION] = 'FB';
 };
 
 function dibujarMatriz() {
-    for (let row = 0; row < matriz.length; row++) {
-        for (let col = 0; col < matriz.length; col++) {
+    for (row = 0; row < matriz.length; row++) {
+        for (col = 0; col < matriz.length; col++) {
             if (matriz[row][col] == 'FN') {
-                lapiz.drawImage(FichaNegra.imagen, (DIFERENCIA * col) + ESPACIOX, (DIFERENCIA * row) + ESPACIOY);
+                lapiz.drawImage(FichaNegra.imagen, (DIMENSION * col) + ESPACIOX, (DIMENSION * row) + ESPACIOY);
             }
             if (matriz[row][col] == 'FB') {
-                lapiz.drawImage(FichaBlanca.imagen, (DIFERENCIA * col) + ESPACIOX, (DIFERENCIA * row) + ESPACIOY);
+                lapiz.drawImage(FichaBlanca.imagen, (DIMENSION * col) + ESPACIOX, (DIMENSION * row) + ESPACIOY);
             }
         }
     }
-}
+};
 
-function nuevoJuego() {
-
-    turno = true;
-
-    generarMatriz();
-    generarFichasNegras();
-    generarFichasBlancas();
-    dibujar();
-    dibujarMatriz();
-    turnos();
-}
+function nuevoJuego() { //Funcion del boton nuevo juego
+    turno = true; //true para turno negro, false para turno blanco
+    generarMatriz(); //genera la matriz con todo vacio
+    generarFichasNegras(); //Genera las fichas negras del centro
+    generarFichasBlancas(); //genera las fichas blancas del centro
+    dibujar(); //Dibuja el tablero
+    dibujarMatriz(); //Dibuja la matriz
+    turnos(); //Hace que empiece el juego con la ficha del turno correspondiente
+};
 
 function movimiento(evento) {
     switch (evento.keyCode) {
         case tecla.LEFT:
-            alert("Izquierda");
-
+            if (x > ESPACIOX) //Verifica que no se pase del margen
+                x -= DIMENSION;
+            dibujar(); //Dibuja el tablero
+            dibujarMatriz(); //Dibuja la matriz
+            turnos(); //Hace que empiece el juego con la ficha del turno correspondiente
             break;
         case tecla.UP:
-            alert('arriba');
+            if (y > ESPACIOY)
+                y -= DIMENSION;
+            dibujar();
+            dibujarMatriz();
+            turnos();
             break;
         case tecla.RIGHT:
-            alert('derecha');
+            if (x < 360 + ESPACIOX)
+                x += DIMENSION;
+            dibujar();
+            dibujarMatriz();
+            turnos();
             break;
         case tecla.DOWN:
-            alert('Abajo');
+            if (y < 360 + ESPACIOY)
+                y += DIMENSION;
+            dibujar();
+            dibujarMatriz();
+            turnos();
             break;
         case tecla.ENTER:
-            iniciarFichaNegra();
+            comer();
+            colocarFicha();
+            dibujar();
+            dibujarMatriz();
+            turnos();
             console.log(matriz);
             break;
     }
-}
+};
 
-function turnos() {
-    if (turno) {
-        turnoNegro();
+function turnos() { //Es llamado al presionar enter
+    if (turno)
+        lapiz.drawImage(FichaNegra.imagen, x + ESPACIOX, y + ESPACIOY);
+    else
+        lapiz.drawImage(FichaBlanca.imagen, x + ESPACIOX, y + ESPACIOY);
 
-    } else {
-        turnoBlanco();
+};
+
+function colocarFicha() { //Verifica que se pueda colocar la ficha en la posición indicada
+    if (turno) { //turno de fichas negras
+        if (matriz[y / DIMENSION][x / DIMENSION] == 'x') { //Verifica que esté vacía la celda
+            matriz[y / DIMENSION][x / DIMENSION] = 'FN'; //Cambia el valor al de la ficha
+            turno = false; //Cambia el turno
+            x = 0; //Genera la imagen desde 0
+            y = 0; //Genera la imagen desde 0
+            dibujar(); //Dibuja el tablero
+            dibujarMatriz(); //Dibuja la matriz según los calores
+        } else
+            alert("movimiento invalido");
+    } else { //turno de fichas blancas
+        if (matriz[y / DIMENSION][x / DIMENSION] == 'x') {
+            matriz[y / DIMENSION][x / DIMENSION] = 'FB';
+            turno = true;
+            x = 0;
+            y = 0;
+            dibujar();
+            dibujarMatriz();
+        } else
+            alert("movimiento invalido");
     }
 }
 
-function turnoNegro() {
-    alert('Mueve ficha negra');
-    lapiz.drawImage(FichaNegra.imagen, 0 + ESPACIOX, 0 + ESPACIOY);
-
-}
-
-function turnoBlanco() {
-    alert('Mueve ficha blanca');
-    lapiz.drawImage(FichaBlanca.imagen, 0 + ESPACIOX, 0 + ESPACIOY);
-}
-
-function iniciarFichaNegra() {
-    var row = 0;
-    var col = 0;
-    if (matriz[row][col] == 'x') {
-        matriz[row][col] = 'FN';
+function comer() {
+    if (turno) {
+        alert('Negro ' + x + " " + y);
     }
 }
