@@ -4,14 +4,10 @@ var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPACIOX = 8;
 const ESPACIOY = 9;
-<<<<<<< HEAD
-var turnoNegro = false;
-=======
-const DIFERENCIA = 60;
-var turno = false; 
+const DIMENSION = 60;
+var turno = false;
 var x = 0;
 var y = 0;
->>>>>>> 862ec0c8cc71817788672fa5dbe0ab57de6b298d
 
 var tablero = {
     url: './imagenes/tablero.png',
@@ -49,14 +45,11 @@ tablero.imagen.addEventListener("load", function() {
 });
 
 generarMatriz();
-// generarFichasNegras();
-// generarFichasBlancas();
 dibujar();
 
 function dibujar() {
-    if (tablero.cargaOk) {
+    if (tablero.cargaOk)
         lapiz.drawImage(tablero.imagen, 0, 0);
-    }
     dibujarMatriz();
 };
 
@@ -70,95 +63,84 @@ function generarMatriz() {
 };
 
 function generarFichasNegras() {
-    matriz[180 / DIFERENCIA][180 / DIFERENCIA] = 'FN';
-    matriz[240 / DIFERENCIA][240 / DIFERENCIA] = 'FN';
+    matriz[180 / DIMENSION][180 / DIMENSION] = 'FN';
+    matriz[240 / DIMENSION][240 / DIMENSION] = 'FN';
 };
 
 function generarFichasBlancas() {
-    matriz[180 / DIFERENCIA][240 / DIFERENCIA] = 'FB';
-    matriz[240 / DIFERENCIA][180 / DIFERENCIA] = 'FB';
+    matriz[180 / DIMENSION][240 / DIMENSION] = 'FB';
+    matriz[240 / DIMENSION][180 / DIMENSION] = 'FB';
 };
 
 function dibujarMatriz() {
     for (let row = 0; row < matriz.length; row++) {
         for (let col = 0; col < matriz.length; col++) {
-            if (matriz[row][col] == 'FN') {
-                lapiz.drawImage(FichaNegra.imagen, (DIFERENCIA * col) + ESPACIOX, (DIFERENCIA * row) + ESPACIOY);
-            }
-            if (matriz[row][col] == 'FB') {
-                lapiz.drawImage(FichaBlanca.imagen, (DIFERENCIA * col) + ESPACIOX, (DIFERENCIA * row) + ESPACIOY);
-            }
+            if (matriz[row][col] == 'FN')
+                lapiz.drawImage(FichaNegra.imagen, (DIMENSION * col) + ESPACIOX, (DIMENSION * row) + ESPACIOY);
+            if (matriz[row][col] == 'FB')
+                lapiz.drawImage(FichaBlanca.imagen, (DIMENSION * col) + ESPACIOX, (DIMENSION * row) + ESPACIOY);
         }
     }
-}
+};
 
 function nuevoJuego() {
-
     turno = true;
-
-    generarMatriz();
     generarFichasNegras();
     generarFichasBlancas();
     dibujar();
     dibujarMatriz();
     turnos();
-}
+};
 
 function movimiento(evento) {
     switch (evento.keyCode) {
         case tecla.LEFT:
-            alert("Izquierda");
-
+            if (x > ESPACIOX)
+                x -= DIMENSION;
+            mover();
             break;
         case tecla.UP:
-            alert('arriba');
+            if (y > ESPACIOY)
+                y -= DIMENSION;
+            mover();
             break;
         case tecla.RIGHT:
-            alert('derecha');
+            if (x < 360 + ESPACIOX)
+                x += DIMENSION;
+            mover();
             break;
         case tecla.DOWN:
-            alert('Abajo');
+            if (y < 360 + ESPACIOY)
+                y += DIMENSION;
+            mover();
             break;
         case tecla.ENTER:
             iniciarFichaNegra();
             console.log(matriz);
             break;
     }
-}
+};
 
 function turnos() {
-<<<<<<< HEAD
-    if (turnoNegro) {
-        alert('Mueve ficha negra');
-        //turnoNegro();
-    } else {
-        alert('Mueve ficha blanca');
-        //turnoBlanco();
-    }
-}
-=======
- if (turno){
-     turnoNegro();
+    if (turno)
+        turnoNegro();
+    else
+        turnoBlanco();
+};
 
- }else{
-     turnoBlanco();
- }
-}
+
 function turnoNegro() {
-         alert('Mueve ficha negra');
-         lapiz.drawImage(FichaNegra.imagen,0+ESPACIOX,0+ESPACIOY);
+    lapiz.drawImage(FichaNegra.imagen, x + ESPACIOX, y + ESPACIOY);
 
-}
+};
+
 function turnoBlanco() {
-         alert('Mueve ficha blanca');
-         lapiz.drawImage(FichaBlanca.imagen,0+ESPACIOX,0+ESPACIOY);
-}
+    lapiz.drawImage(FichaBlanca.imagen, x + ESPACIOX, y + ESPACIOY);
+};
 
-function iniciarFichaNegra(){
-        var row=0;
-        var col=0;
-        if(matriz[row][col]=='x'){
-            matriz[row][col] = 'FN';
-        }
+function iniciarFichaNegra() {
+    var row = 0;
+    var col = 0;
+    if (matriz[row][col] == 'x')
+        matriz[row][col] = 'FN';
 }
->>>>>>> 862ec0c8cc71817788672fa5dbe0ab57de6b298d
