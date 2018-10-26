@@ -203,3 +203,14 @@ function jugadaPosible() {
 function comer() {
 
 }
+function primerJugada(){
+    for(var i =0; i<matriz.length;i++){
+        for(var j = j; i<matriz.length;j++){
+
+        }
+
+    }
+}
+function reglas(){
+    alert('REGLAS');
+}
