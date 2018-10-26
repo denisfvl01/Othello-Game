@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Acerca de</title>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" media="screen" href="../css/Rules.css">
+    </head>
+    <body background="../backgroundrules.jpg">
+        <div class="cols">
+                <div align="left" class="contenedor">
+                        <h3><i><b>Reglas Othello</b></i></h3>
+                        <q>Los movimientos consisten en incorporar fichas al tablero a razón de una por turno,<br> 
+                            nunca en desplazar fichas de las que ya estuvieran sobre el tablero.<br>
+                                <br>
+                                Las incorporaciones deberán hacerse en orden a las siguientes normas:
+                                <br><br>
+                                Sólo podrá incorporarse una ficha flanquendo a una o varias fichas contrarias.<br>
+                                Por flanquear se entiende el hecho de colocar la nueva ficha en un extremo <br>
+                                de una hilera de fichas del color del contrario (una o más fichas) <br>
+                                en cuyo extremo opuesto hay una ficha del color de la que se incorpora, sin<br>
+                                 que existan casillas libres entre ninguna de ellas. Esta hilera puede <br>
+                                ser indistintamente vertical, horizontal o diagonal. De este modo, las fichas<br>
+                                 del contrincante quedan encerradas entre una que ya estaba en el tablero y la nueva ficha.<br>
+                                <br>
+                                Cada vez que un jugador incorpora una ficha, y por lo tanto encierra a otras del<br>
+                                 contrario, debe dar la vuelta a las fichas encerradas convirtiéndolas así en propias.<br>
+                                Si en una sola incorporación se provocase esta situación de flanqueo en más de una línea,<br>
+                                 se voltearán todas las fichas contrarias que estuvieran implicadas en cada uno de los flanqueos.<br>
+                                Si no fuera posible para un jugador encerrar a ninguna ficha, deberá pasar en su turno,<br>
+                                 volviendo el mismo a su oponente.<br>
+                                 La partida finaliza cuando todas las casillas del tablero son ocupadas o ninguno de los 2 jugadores <br>
+                                  tiene posibilidad de incorpar una nueva ficha.<br><br>
+        
+                                 En cualquier caso vence el jugador que tiene más fichas sobre el tablero.<br><br>
+                                 
+                                 Puede darse el caso de empate si el número de fichas de cada color al acabar la partida es el mismo.
+        
+                        </q>
+                </div>
+                <div class="contenedorLateral" align="center">
+                        <img src="../imagenes/reversi0.gif" alt="Othello" height="300" width="300">
+                    </div>
+        </div>
+            
+       
+        <canvas> </canvas>
+        <footer class="bg-dark">
+                &copy; Reglas Othello 2018
+        </footer>
+    </body>
+    <script src="..js/jquery-3.3.1.min.js"></script>
+    <script src="..js/bootstrap.min.js"></script>
+
+</html>
