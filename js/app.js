@@ -190,10 +190,8 @@ function jugadaPosible() {
     }
     if (posibleJugada == 0) {
         alert(mensajesJ.terminado);
-        if (fichasBlancas > fichasNegras) {
-            alert(mensajesJ.blancas);
-        } else if (fichasBlancas < fichasNegras) {
-            alert(mensajesJ.negras);
+        if (fichasBlancas != fichasNegras) {
+            alert((fichasBlancas < fichasNegras ? mensajesJ.negras : mensajesJ.blancas));
         } else {
             alert(mensajesJ.empate);
         }
