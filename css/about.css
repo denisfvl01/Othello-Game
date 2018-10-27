@@ -1,4 +1,4 @@
-body {
+body{
     width: 100%;
     height: 100%; 
     font-family: "Times New Roman", Times, Arial, serif;
@@ -16,21 +16,32 @@ footer {
     text-align: center;
     height: 21px;
 }
-.contenedor {
-    width: 50%;
+img{
+    float: initial;
+}
+.h{
+    background-color: rgb(43, 43, 43)
+}
+.colInfo{
+    width: 33%;
     background-color: rgb(0, 7, 31);
     margin: 1% 1%;
 }
-.contenedorLateral{
-    width: 49%;
+/* .colBryan{
+    width: 33%;
     background-color: rgb(0, 7, 31);
     margin: 1% 1%;
 }
-.cols{
+.colDenis{
+    width: 33%;
+    background-color: rgb(0, 7, 31);
+    margin: 1% 1%;
+} */
+.col {
     display: flex;
 }
-.contenedor,
-.contenedorLateral{
+.colInfo,
+.colImages{
     display: inline-block;
     height: 100%;
 }
