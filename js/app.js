@@ -57,11 +57,11 @@ function dibujar() {
     }
 };
 
-function generarMatriz() {
-    for (let row = 0; row < matriz.length; row++) {
-        matriz[row] = new Array(8);
-        for (let col = 0; col < matriz.length; col++) {
-            matriz[row][col] = 'x';
+function generarMatriz(matrizRecibida) {
+    for (let row = 0; row < matrizRecibida.length; row++) {
+        matrizRecibida[row] = new Array(8);
+        for (let col = 0; col < matrizRecibida.length; col++) {
+            matrizRecibida[row][col] = 'x';
         }
     }
 };
@@ -88,7 +88,7 @@ function dibujarMatriz() {
 function nuevoJuego() { //Funcion del boton nuevo juego
     document.addEventListener("keydown", movimiento);
     turno = true; //true para turno negro
-    generarMatriz(); //genera la matriz con todo vacio
+    generarMatriz(matriz); //genera la matriz con todo vacio
     generarFichas(); //Genera las fichas del centro
     dibujar(); //Dibuja el tablero
     dibujarMatriz(); //Dibuja la matriz
@@ -126,7 +126,6 @@ function movimiento(evento) {
             turnos();
             break;
         case tecla.ENTER:
-            comer();
             colocarFicha();
             dibujar();
             dibujarMatriz();
@@ -149,6 +148,7 @@ function colocarFicha() { //Verifica que se pueda colocar la ficha en la posiciÃ
     if (turno) { //turno de fichas negras
         if (matriz[y / DIMENSION][x / DIMENSION] == 'x') { //Verifica que estÃ© vacÃ­a la celda
             matriz[y / DIMENSION][x / DIMENSION] = 'FN'; //Cambia el valor al de la ficha
+            movimientoValido();
             turno = false; //Cambia el turno
             x = 0; //Genera la imagen desde 0
             y = 0; //Genera la imagen desde 0
@@ -171,20 +171,18 @@ function colocarFicha() { //Verifica que se pueda colocar la ficha en la posiciÃ
             alert("movimiento invalido");
         }
     }
-}
+};
 
 function jugadaPosible() {
     let posibleJugada = 0;
     let fichasBlancas = 0;
     let fichasNegras = 0;
-    for (let col = 0; col < matriz.length; col++) {
-        for (let row = 0; row < matriz.length; row++) {
-            if (matriz[col][row] == 'x') {
+    for (let row = 0; row < matriz.length; row++) {
+        for (let col = 0; col < matriz.length; col++) {
+            if (matriz[row][col] == 'x') {
                 posibleJugada++;
-            } else if (matriz[col][row] == 'FN') {
-                fichasNegras++;
             } else {
-                fichasBlancas++;
+                matriz[col][col] == 'FN' ? fichasNegras++ : fichasBlancas++;
             }
         }
     }
@@ -197,20 +195,56 @@ function jugadaPosible() {
         }
         location.reload();
     }
+};
 
-}
+function movimientoValido() {
+    let col = x / DIMENSION;
+    let row = y / DIMENSION;
+    let fb = 0;
+    let fn = 0;
+    let posiciones = new Array(8);
+    generarMatriz(posiciones)
+    if (turno) {
+        if (row == 0) {
+            for (let rows = 1; rows < matriz.length; rows++) {
+                if (rows == 1 && (matriz[rows][col] == 'FN' || matriz[rows][col] == 'x')) {
+                    break;
+                } else {
+                    if (matriz[rows][col] == 'FB') {
+                        if (rows != 7) {
+                            posiciones[rows][col] = 'FN';
+                        } else {
+                            generarMatriz(posiciones);
+                        }
+                    } else if (matriz[rows][col] == 'FN') {
+                        for (let fila = 0; fila < posiciones.length; fila++) {
+                            for (let columna = 0; columna < posiciones.length; columna++) {
+                                if (posiciones[fila][columna] == 'FN') {
+                                    matriz[fila][columna] = 'FN';
+                                }
+                            }
+                        }
+                        break;
+                    } else {
+                        for (let fila = 0; fila < posiciones.length; fila++) {
+                            for (let columna = 0; columna < posiciones.length; columna++) {
+                                if (posiciones[fila][columna] == 'FB') {
+                                    matriz[fila][columna] = 'x';
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
 
-function comer() {
 
-}
-function primerJugada(){
-    for(var i =0; i<matriz.length;i++){
-        for(var j = j; i<matriz.length;j++){
+            }
+        } else if (row == 7) {
+
+        } else {
 
         }
+    } else {
 
     }
-}
-function reglas(){
-    alert('REGLAS');
 }
