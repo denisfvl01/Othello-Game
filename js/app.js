@@ -248,3 +248,18 @@ function movimientoValido() {
 
     }
 }
+
+// function mensajeGanador(){
+//     if(){
+//     alert('Gana ficha Blanca');
+//     }else if(){
+//     alert('Gana ficha Negra');
+//     }
+
+    
+// }
+// function mensajeEmpate(){
+//     if(){
+//         alert('Empates!!!');
+//     }
+// }
