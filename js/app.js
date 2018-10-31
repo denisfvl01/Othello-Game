@@ -80,9 +80,9 @@ function dibujarMatriz() {
 };
 
 function nuevoJuego() { //Función del botón nuevo juego
+    document.addEventListener("keydown", movimiento);
     x = 0;
     y = 0;
-    document.addEventListener("keydown", movimiento);
     turno = true; //True para turno negro
     generarMatriz(matriz); //Genera la matriz con todo vacío
     generarFichas(); //Genera las fichas del centro
@@ -122,12 +122,10 @@ function movimiento(evento) {
             turnos();
             break;
         case tecla.ENTER:
-            console.log(matriz);
             colocarFicha();
             dibujar();
             dibujarMatriz();
             turnos();
-            console.log(matriz);
     }
 };
 
@@ -193,6 +191,12 @@ function jugadaPosible() {
         else
             alert(mensajesJ.empate);
         location.reload();
+    } else {
+        if (fichasBlancas == 0) {
+            alert(mensajesJ.negras);
+        } else if (fichasNegras == 0) {
+            alert(mensajesJ.blancas);
+        }
     }
 };
 
@@ -201,220 +205,225 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     let row = y / DIMENSION;
     let comidaPosible = false;
     let posiciones = new Array(8);
-    generarMatriz(posiciones)
-    for (let num = 1; num < row; num++) { //Captura vertical hacia arriba
-        if (num == 1 && (matriz[row - num][col] == fPrincipal || matriz[row - num][col] == 'x')) {
-            break;
-        } else {
-            if (matriz[row - num][col] == fSecundaria) {
-                if (row - num != 0) {
-                    posiciones[row - num][col] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row - num][col] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    generarMatriz(posiciones);
+    if (row > 1) {
+        for (let num = 1; num < row; num++) { //Realiza la captura hacia arriba
+            if (num == 1 && (matriz[row - 1][col] == fPrincipal || matriz[row - 1][col] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row - num][col] == fSecundaria) {
+                    if (row - num != 0) {
+                        posiciones[row - num][col] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row - num][col] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = fPrincipal;
+                            }
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < (matriz.length - row); num++) { //Captura vertical hacia abajo
-        if (num == 1 && (matriz[row + num][col] == fPrincipal || matriz[row + num][col] == 'x')) {
-            break;
-        } else {
-            if (matriz[row + num][col] == fSecundaria) {
-                if (row + num != 7) {
-                    posiciones[row + num][col] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row + num][col] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (row < 6) {
+        for (let num = 1; num < matriz.length - row; num++) { //Realiza la captura hacia abajo
+            if (num == 1 && (matriz[row + 1][col] == fPrincipal || matriz[row + 1][col] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row + num][col] == fSecundaria) {
+                    if (row + num != 7) {
+                        posiciones[row + num][col] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row + num][col] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = fPrincipal;
+                            }
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < col; num++) { //Captura horizontal hacia la izquierda
-        if (num == 1 && (matriz[row][col - num] == fPrincipal || matriz[row][col - num] == 'x')) {
-            break;
-        } else {
-            if (matriz[row][col - num] == fSecundaria) {
-                if (col - num != 0) {
-                    posiciones[row][col - num] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row][col - num] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (col > 1) {
+        for (let num = 1; num < col; num++) { //Realiza la captura hacia la izquierda
+            if (num == 1 && (matriz[row][col - 1] == fPrincipal || matriz[row][col - 1] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row][col - num] == fSecundaria) {
+                    if (col - num != 0) {
+                        posiciones[row][col - num] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row][col - num] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = fPrincipal;
+                            }
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < (matriz.length - col); num++) { //Captura horizontal hacia la derecha
-        if (num == 1 && (matriz[row][col + num] == fPrincipal || matriz[row][col + num] == 'x')) {
-            break;
-        } else {
-            if (matriz[row][col + num] == fSecundaria) {
-                if (col + num != 7) {
-                    posiciones[row][col + num] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row][col + num] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (col < 6) {
+        for (let num = 1; num < matriz.length - col; num++) { //Realiza la captura hacia la derecha
+            if (num == 1 && (matriz[row][col + 1] == fPrincipal || matriz[row][col + 1] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row][col + num] == fSecundaria) {
+                    if (col + num != 7) {
+                        posiciones[row][col + num] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row][col + num] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = fPrincipal;
+                            }
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < row && num < col; num++) { //Captura hacia arriba/izquierda
-        if (num == 1 && (matriz[row - num][col - num] == fPrincipal || matriz[row - num][col - num] == 'x')) {
-            break;
-        } else {
-            if (matriz[row - num][col - num] == fSecundaria) {
-                if (col - num != 0 && row - num != 0) {
-                    posiciones[row - num][col - num] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row - num][col - num] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (col > 1 && row > 1) {
+        for (let num = 1; num < row && num < col; num++) { //Captura hacia arriba/izquierda
+            if (num == 1 && (matriz[row - 1][col - 1] == fPrincipal || matriz[row - 1][col - 1] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row - num][col - num] == fSecundaria) {
+                    if (col - num != 0 || row - num != 0) {
+                        posiciones[row - num][col - num] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row - num][col - num] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = fPrincipal;
+                            }
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < (matriz.length - row) && num < (matriz.length - col); num++) { //Captura hacia abajo/derecha
-        if (num == 1 && (matriz[row + num][col + num] == fPrincipal || matriz[row + num][col + num] == 'x')) {
-            break;
-        } else {
-            if (matriz[row + num][col + num] == fSecundaria) {
-                if (col + num != 7 && row + num != 7) {
-                    posiciones[row + num][col + num] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row + num][col + num] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (col < 6 && row < 6) {
+        for (let num = 1; num < matriz.length - row && num < matriz.length - col; num++) { //Captura hacia abajo/derecha
+            if (num == 1 && (matriz[row + 1][col + 1] == fPrincipal || matriz[row + 1][col + 1] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row + num][col + num] == fSecundaria) {
+                    if (col + num != 7 && row + num != 7) {
+                        posiciones[row + num][col + num] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row + num][col + num] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = fPrincipal;
+                            }
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < row && num < matriz.length - col; num++) { //Captura hacia arriba/derecha
-        if (num == 1 && (matriz[row - num][col + num] == fPrincipal || matriz[row - num][col + num] == 'x')) {
-            break;
-        } else {
-            if (matriz[row - num][col + num] == fSecundaria) {
-                if (col - num != 0 && row + num != 7) {
-                    posiciones[row - num][col + num] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row - num][col + num] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (col < 6 && row > 1) {
+        for (let num = 1; num < row && num < matriz.length - col; num++) { //Captura hacia arriba/derecha
+            if (num == 1 && (matriz[row - 1][col + 1] == fPrincipal || matriz[row - 1][col + 1] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row - num][col + num] == fSecundaria) {
+                    if (col - num != 0 && row + num != 7) {
+                        posiciones[row - num][col + num] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row - num][col + num] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal)
+                                matriz[fila][columna] = fPrincipal;
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
+        generarMatriz(posiciones);
     }
-    for (let num = 1; num < matriz.length - row && num < col; num++) { //Captura hacia abajo/izquierda
-        if (num == 1 && (matriz[row + num][col - num] == fPrincipal || matriz[row + num][col - num] == 'x')) {
-            break;
-        } else {
-            if (matriz[row + num][col - num] == fSecundaria) {
-                if (col + num != 7 && row - num != 0) {
-                    posiciones[row + num][col - num] = fPrincipal;
-                } else {
-                    generarMatriz(posiciones);
-                    break;
-                }
-            } else if (matriz[row + num][col - num] == fPrincipal) {
-                for (let fila = 0; fila < posiciones.length; fila++) {
-                    for (let columna = 0; columna < posiciones.length; columna++) {
-                        if (posiciones[fila][columna] == fPrincipal)
-                            matriz[fila][columna] = fPrincipal;
-                    }
-                }
-                generarMatriz(posiciones);
-                comidaPosible = true;
+    if (col > 1 && row < 6) {
+        for (let num = 1; num - matriz.length - row && num < col; num++) { //Captura hacia abajo/izquierda
+            if (num == 1 && (matriz[row + 1][col - 1] == fPrincipal || matriz[row + 1][col - 1] == 'x')) {
                 break;
             } else {
-                generarMatriz(posiciones);
-                break;
+                if (matriz[row + num][col - num] == fSecundaria) {
+                    if (col + num != 7 && row - num != 0) {
+                        posiciones[row + num][col - num] = fPrincipal;
+                    } else {
+                        break;
+                    }
+                } else if (matriz[row + num][col - num] == fPrincipal) {
+                    for (let fila = 0; fila < matriz.length; fila++) {
+                        for (let columna = 0; columna < matriz.length; columna++) {
+                            if (posiciones[fila][columna] == fPrincipal)
+                                matriz[fila][columna] = fPrincipal;
+                        }
+                    }
+                    comidaPosible = true;
+                    break;
+                } else {
+                    break;
+                }
             }
         }
     }
