@@ -221,7 +221,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
                             if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = fPrincipal;
+                                matriz[fila][columna] = posiciones[fila][columna];
                             }
                         }
                     }
@@ -232,8 +232,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (row < 6) {
         for (let num = 1; num < matriz.length - row; num++) { //Realiza la captura hacia abajo
             if (num == 1 && (matriz[row + 1][col] == fPrincipal || matriz[row + 1][col] == 'x')) {
@@ -249,7 +249,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
                             if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = fPrincipal;
+                                matriz[fila][columna] = posiciones[fila][columna];
                             }
                         }
                     }
@@ -260,8 +260,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (col > 1) {
         for (let num = 1; num < col; num++) { //Realiza la captura hacia la izquierda
             if (num == 1 && (matriz[row][col - 1] == fPrincipal || matriz[row][col - 1] == 'x')) {
@@ -277,7 +277,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
                             if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = fPrincipal;
+                                matriz[fila][columna] = posiciones[fila][columna];
                             }
                         }
                     }
@@ -288,8 +288,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (col < 6) {
         for (let num = 1; num < matriz.length - col; num++) { //Realiza la captura hacia la derecha
             if (num == 1 && (matriz[row][col + 1] == fPrincipal || matriz[row][col + 1] == 'x')) {
@@ -305,7 +305,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
                             if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = fPrincipal;
+                                matriz[fila][columna] = posiciones[fila][columna];
                             }
                         }
                     }
@@ -316,8 +316,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (col > 1 && row > 1) {
         for (let num = 1; num < row && num < col; num++) { //Captura hacia arriba/izquierda
             if (num == 1 && (matriz[row - 1][col - 1] == fPrincipal || matriz[row - 1][col - 1] == 'x')) {
@@ -333,7 +333,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
                             if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = fPrincipal;
+                                matriz[fila][columna] = posiciones[fila][columna];
                             }
                         }
                     }
@@ -344,8 +344,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (col < 6 && row < 6) {
         for (let num = 1; num < matriz.length - row && num < matriz.length - col; num++) { //Captura hacia abajo/derecha
             if (num == 1 && (matriz[row + 1][col + 1] == fPrincipal || matriz[row + 1][col + 1] == 'x')) {
@@ -361,7 +361,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
                             if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = fPrincipal;
+                                matriz[fila][columna] = posiciones[fila][columna];
                             }
                         }
                     }
@@ -372,15 +372,15 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (col < 6 && row > 1) {
         for (let num = 1; num < row && num < matriz.length - col; num++) { //Captura hacia arriba/derecha
             if (num == 1 && (matriz[row - 1][col + 1] == fPrincipal || matriz[row - 1][col + 1] == 'x')) {
                 break;
             } else {
                 if (matriz[row - num][col + num] == fSecundaria) {
-                    if (col - num != 0 && row + num != 7) {
+                    if (col + num != 7 && row - num != 0) {
                         posiciones[row - num][col + num] = fPrincipal;
                     } else {
                         break;
@@ -388,8 +388,9 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row - num][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal)
-                                matriz[fila][columna] = fPrincipal;
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = posiciones[fila][columna];
+                            }
                         }
                     }
                     comidaPosible = true;
@@ -399,15 +400,15 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 }
             }
         }
-        generarMatriz(posiciones);
     }
+    generarMatriz(posiciones);
     if (col > 1 && row < 6) {
-        for (let num = 1; num - matriz.length - row && num < col; num++) { //Captura hacia abajo/izquierda
+        for (let num = 1; num < matriz.length - row && num < col; num++) { //Captura hacia abajo/izquierda
             if (num == 1 && (matriz[row + 1][col - 1] == fPrincipal || matriz[row + 1][col - 1] == 'x')) {
                 break;
             } else {
                 if (matriz[row + num][col - num] == fSecundaria) {
-                    if (col + num != 7 && row - num != 0) {
+                    if (col - num != 0 && row + num != 7) {
                         posiciones[row + num][col - num] = fPrincipal;
                     } else {
                         break;
@@ -415,8 +416,9 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row + num][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal)
-                                matriz[fila][columna] = fPrincipal;
+                            if (posiciones[fila][columna] == fPrincipal) {
+                                matriz[fila][columna] = posiciones[fila][columna];
+                            }
                         }
                     }
                     comidaPosible = true;
@@ -428,11 +430,11 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
         }
     }
     return comidaPosible;
-}
+};
 
 function movIncorrecto() {
     alert("Movimiento inválido\nVuelve a intentarlo!");
-}
+};
 
 function pasar() {
     x = 0;
