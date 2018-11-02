@@ -212,11 +212,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row - num][col] == fSecundaria) {
-                    if (row - num != 0) {
-                        posiciones[row - num][col] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row - num][col] = fPrincipal;
                 } else if (matriz[row - num][col] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -240,11 +236,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row + num][col] == fSecundaria) {
-                    if (row + num != 7) {
-                        posiciones[row + num][col] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row + num][col] = fPrincipal;
                 } else if (matriz[row + num][col] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -268,11 +260,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row][col - num] == fSecundaria) {
-                    if (col - num != 0) {
-                        posiciones[row][col - num] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row][col - num] = fPrincipal;
                 } else if (matriz[row][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -296,11 +284,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row][col + num] == fSecundaria) {
-                    if (col + num != 7) {
-                        posiciones[row][col + num] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row][col + num] = fPrincipal;
                 } else if (matriz[row][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -324,11 +308,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row - num][col - num] == fSecundaria) {
-                    if (col - num != 0 || row - num != 0) {
-                        posiciones[row - num][col - num] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row - num][col - num] = fPrincipal;
                 } else if (matriz[row - num][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -352,11 +332,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row + num][col + num] == fSecundaria) {
-                    if (col + num != 7 && row + num != 7) {
-                        posiciones[row + num][col + num] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row + num][col + num] = fPrincipal;
                 } else if (matriz[row + num][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -380,11 +356,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row - num][col + num] == fSecundaria) {
-                    if (col + num != 7 && row - num != 0) {
-                        posiciones[row - num][col + num] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row - num][col + num] = fPrincipal;
                 } else if (matriz[row - num][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
@@ -408,11 +380,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 break;
             } else {
                 if (matriz[row + num][col - num] == fSecundaria) {
-                    if (col - num != 0 && row + num != 7) {
-                        posiciones[row + num][col - num] = fPrincipal;
-                    } else {
-                        break;
-                    }
+                    posiciones[row + num][col - num] = fPrincipal;
                 } else if (matriz[row + num][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
