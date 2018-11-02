@@ -61,11 +61,11 @@ function generarMatriz(matrizRecibida) {
     }
 };
 
-function generarFichas() {
-    matriz[180 / DIMENSION][180 / DIMENSION] = 'FN';
-    matriz[240 / DIMENSION][240 / DIMENSION] = 'FN';
-    matriz[180 / DIMENSION][240 / DIMENSION] = 'FB';
-    matriz[240 / DIMENSION][180 / DIMENSION] = 'FB';
+function generarFichas() { //Genera las fichas al inicio del juego.
+    matriz[3][3] = 'FN';
+    matriz[4][4] = 'FN';
+    matriz[3][4] = 'FB';
+    matriz[4][3] = 'FB';
 };
 
 function dibujarMatriz() {
@@ -130,16 +130,16 @@ function movimiento(evento) {
 };
 
 function turnos() { //Es llamado al presionar enter
-    if (turno)
-        lapiz.drawImage(FichaNegra.imagen, x + ESPX, y + ESPY);
-    else
-        lapiz.drawImage(FichaBlanca.imagen, x + ESPX, y + ESPY);
+    if (turno) //Si es turno de negras..
+        lapiz.drawImage(FichaNegra.imagen, x + ESPX, y + ESPY); //Dibujando la ficha negra esquina sup. derecha
+    else //turno blancas
+        lapiz.drawImage(FichaBlanca.imagen, x + ESPX, y + ESPY); //Dibujando la ficha blanca esquina sup. derecha
 };
 
 function colocarFicha() { //Verifica que se pueda colocar la ficha en la posición indicada
     if (turno) { //turno de fichas negras
         if (matriz[y / DIMENSION][x / DIMENSION] == 'x') { //Verifica que esté vacía la celda
-            if (movimientoValido('FN', 'FB')) {
+            if (movimientoValido('FN', 'FB')) { //Si es posible comer continúa el cambio de  turno
                 matriz[y / DIMENSION][x / DIMENSION] = 'FN'; //Cambia el valor al de la ficha
                 turno = false; //Cambia el turno
                 x = 0; //Genera la imagen desde 0
@@ -208,20 +208,19 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     generarMatriz(posiciones);
     if (row > 1) {
         for (let num = 1; num < row; num++) { //Realiza la captura hacia arriba
-            if (num == 1 && (matriz[row - 1][col] == fPrincipal || matriz[row - 1][col] == 'x')) {
-                break;
+            if (num == 1 && (matriz[row - 1][col] == fPrincipal || matriz[row - 1][col] == 'x')) { //Si hay ficha igual o nada como siguiente
+                break; //Se saldrá
             } else {
-                if (matriz[row - num][col] == fSecundaria) {
-                    posiciones[row - num][col] = fPrincipal;
-                } else if (matriz[row - num][col] == fPrincipal) {
+                if (matriz[row - num][col] == fSecundaria) { //Si hay ficha opuesta...
+                    posiciones[row - num][col] = fPrincipal; //La matriz de copia cambia asigna el valor a ficha principal
+                } else if (matriz[row - num][col] == fPrincipal) { //Si encuentra una igual
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
-                                matriz[fila][columna] = posiciones[fila][columna];
-                            }
+                            if (posiciones[fila][columna] == fPrincipal)
+                                matriz[fila][columna] = posiciones[fila][columna]; //Pega los valores de posiciones en la matriz
                         }
                     }
-                    comidaPosible = true;
+                    comidaPosible = true; //Es posible comer
                     break;
                 } else {
                     break;
@@ -240,9 +239,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row + num][col] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
@@ -264,9 +262,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
@@ -288,9 +285,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
@@ -312,9 +308,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row - num][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
@@ -336,9 +331,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row + num][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
@@ -360,9 +354,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row - num][col + num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
@@ -384,9 +377,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                 } else if (matriz[row + num][col - num] == fPrincipal) {
                     for (let fila = 0; fila < matriz.length; fila++) {
                         for (let columna = 0; columna < matriz.length; columna++) {
-                            if (posiciones[fila][columna] == fPrincipal) {
+                            if (posiciones[fila][columna] == fPrincipal)
                                 matriz[fila][columna] = posiciones[fila][columna];
-                            }
                         }
                     }
                     comidaPosible = true;
