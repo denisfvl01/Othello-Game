@@ -147,12 +147,10 @@ function colocarFicha() { //Verifica que se pueda colocar la ficha en la posici√
                 dibujar(); //Dibuja el tablero
                 dibujarMatriz(); //Dibuja la matriz seg√∫n los calores
                 jugadaPosible();
-            } else {
+            } else
                 movIncorrecto();
-            }
-        } else {
+        } else
             movIncorrecto();
-        }
     } else { //turno de fichas blancas
         if (matriz[y / DIMENSION][x / DIMENSION] == 'x') {
             if (movimientoValido('FB', 'FN')) {
@@ -163,12 +161,10 @@ function colocarFicha() { //Verifica que se pueda colocar la ficha en la posici√
                 dibujar();
                 dibujarMatriz();
                 jugadaPosible();
-            } else {
+            } else
                 movIncorrecto();
-            }
-        } else {
+        } else
             movIncorrecto();
-        }
     }
 };
 
@@ -192,11 +188,11 @@ function jugadaPosible() {
             alert(mensajesJ.empate);
         location.reload();
     } else {
-        if (fichasBlancas == 0) {
+        if (fichasBlancas == 0)
             alert(mensajesJ.negras);
-        } else if (fichasNegras == 0) {
+        else if (fichasNegras == 0)
             alert(mensajesJ.blancas);
-        }
+
     }
 };
 
@@ -222,9 +218,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true; //Es posible comer
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -245,9 +240,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -268,9 +262,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -291,9 +284,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -314,9 +306,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -337,9 +328,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -360,9 +350,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
@@ -383,9 +372,8 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
                     }
                     comidaPosible = true;
                     break;
-                } else {
+                } else
                     break;
-                }
             }
         }
     }
