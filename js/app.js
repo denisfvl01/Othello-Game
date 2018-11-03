@@ -207,7 +207,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     let posiciones = new Array(8);
     generarMatriz(posiciones);
     if (row > 1) {
-        for (let num = 1; num < row; num++) { //Realiza la captura hacia arriba
+        for (let num = 1; num <= row; num++) { //Realiza la captura hacia arriba
             if (num == 1 && (matriz[row - 1][col] == fPrincipal || matriz[row - 1][col] == 'x')) { //Si hay ficha igual o nada como siguiente
                 break; //Se saldrá
             } else {
@@ -253,7 +253,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     }
     generarMatriz(posiciones);
     if (col > 1) {
-        for (let num = 1; num < col; num++) { //Realiza la captura hacia la izquierda
+        for (let num = 1; num <= col; num++) { //Realiza la captura hacia la izquierda
             if (num == 1 && (matriz[row][col - 1] == fPrincipal || matriz[row][col - 1] == 'x')) {
                 break;
             } else {
@@ -299,7 +299,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     }
     generarMatriz(posiciones);
     if (col > 1 && row > 1) {
-        for (let num = 1; num < row && num < col; num++) { //Captura hacia arriba/izquierda
+        for (let num = 1; num <= row && num <= col; num++) { //Captura hacia arriba/izquierda
             if (num == 1 && (matriz[row - 1][col - 1] == fPrincipal || matriz[row - 1][col - 1] == 'x')) {
                 break;
             } else {
@@ -345,7 +345,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     }
     generarMatriz(posiciones);
     if (col < 6 && row > 1) {
-        for (let num = 1; num < row && num < matriz.length - col; num++) { //Captura hacia arriba/derecha
+        for (let num = 1; num <= row && num < matriz.length - col; num++) { //Captura hacia arriba/derecha
             if (num == 1 && (matriz[row - 1][col + 1] == fPrincipal || matriz[row - 1][col + 1] == 'x')) {
                 break;
             } else {
@@ -368,7 +368,7 @@ function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas princi
     }
     generarMatriz(posiciones);
     if (col > 1 && row < 6) {
-        for (let num = 1; num < matriz.length - row && num < col; num++) { //Captura hacia abajo/izquierda
+        for (let num = 1; num < matriz.length - row && num <= col; num++) { //Captura hacia abajo/izquierda
             if (num == 1 && (matriz[row + 1][col - 1] == fPrincipal || matriz[row + 1][col - 1] == 'x')) {
                 break;
             } else {
