@@ -188,10 +188,13 @@ function jugadaPosible() {
             alert(mensajesJ.empate);
         location.reload();
     } else {
-        if (fichasBlancas == 0)
+        if (fichasBlancas == 0) {
             alert(mensajesJ.negras);
-        else if (fichasNegras == 0)
+            location.reload();
+        } else if (fichasNegras == 0) {
             alert(mensajesJ.blancas);
+            location.reload();
+        }
 
     }
     valorNegras.value = fichasNegras;
@@ -401,16 +404,16 @@ function finJuego() {
     let fNegras = 0;
     for (let row = 0; row < matriz.length; row++) {
         for (let col = 0; col < matriz.length; col++) {
-            if (matriz[row][col] = 'FB')
+            if (matriz[row][col] == 'FB')
                 fBlancas++;
-            else if (matriz[row][col] = 'FN')
+            else if (matriz[row][col] == 'FN')
                 fNegras++;
         }
     }
     if (fNegras < fBlancas) {
-        alert(mensajesJ.fBlancas);
+        alert(mensajesJ.blancas);
     } else if (fBlancas < fNegras) {
-        alert(mensajesJ.fNegras);
+        alert(mensajesJ.negras);
     } else {
         alert(mensajesJ.empate);
     }
