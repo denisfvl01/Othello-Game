@@ -1,4 +1,6 @@
 var canvas = document.getElementById('tablero');
+var valorNegras = document.getElementById('contNegras');
+var valorBlancas = document.getElementById('contBlancas');
 var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPX = 8;
@@ -192,6 +194,9 @@ function jugadaPosible() {
             alert(mensajesJ.blancas);
 
     }
+    valorNegras.value = fichasNegras;
+    valorBlancas.value = fichasBlancas;
+
 };
 
 function movimientoValido(fPrincipal, fSecundaria) { //fPrincipal: Fichas principales (quienes llaman al método)

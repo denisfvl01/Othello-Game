@@ -7,6 +7,24 @@ footer {
     height: 21px;
 }
 
+#contNegras {
+    width: 135px;
+    text-align: center;
+}
+
+#contBlancas {
+    width: 135px;
+    text-align: center;
+}
+
+.contador {
+    position: fixed;
+    top: 450px;
+    left: 630px;
+    width: 150px;
+    color: white;
+}
+
 .tablero {
     position: fixed;
     top: 90px;
@@ -41,7 +59,7 @@ body {
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
     perspective: 1000px;
-    left: 10px;
+    left: 0px;
 }
 
 .button-row>div>a {
@@ -127,7 +145,7 @@ body {
     display: flex;
     position: fixed;
     top: 280px;
-    left: 151px;
+    left: 51px;
 }
 
 html,
