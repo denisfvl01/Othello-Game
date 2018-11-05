@@ -192,7 +192,7 @@ function jugadaPosible() {
             alert(mensajesJ.negras);
         else if (fichasNegras == 0)
             alert(mensajesJ.blancas);
-
+        location.reload();
     }
     valorNegras.value = fichasNegras;
     valorBlancas.value = fichasBlancas;
