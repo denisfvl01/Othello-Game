@@ -40,8 +40,6 @@ FichaBlanca.imagen.src = FichaBlanca.url;
 FichaNegra.imagen = new Image();
 FichaNegra.imagen.src = FichaNegra.url;
 
-
-
 tablero.imagen.addEventListener("load", function() {
     dibujar();
 });
@@ -391,4 +389,25 @@ function pasar() {
     dibujar();
     dibujarMatriz();
     turnos();
+}
+
+function finJuego() {
+    let fBlancas = 0;
+    let fNegras = 0;
+    for (let row = 0; row < matriz.length; row++) {
+        for (let col = 0; col < matriz.length; col++) {
+            if (matriz[row][col] = 'FB')
+                fBlancas++;
+            else if (matriz[row][col] = 'FN')
+                fNegras++;
+        }
+    }
+    if (fNegras < fBlancas) {
+        alert(mensajesJ.fBlancas);
+    } else if (fBlancas < fNegras) {
+        alert(mensajesJ.fNegras);
+    } else {
+        alert(mensajesJ.empate);
+    }
+    location.reload();
 }
