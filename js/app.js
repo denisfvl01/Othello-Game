@@ -1,6 +1,7 @@
 var canvas = document.getElementById('tablero');
 var valorNegras = document.getElementById('contNegras');
 var valorBlancas = document.getElementById('contBlancas');
+var btnGameOver = document.getElementById('btnGameOver').style.display = 'none';
 var lapiz = canvas.getContext('2d');
 var matriz = new Array(8);
 const ESPX = 8;
@@ -89,6 +90,7 @@ function nuevoJuego() { //Función del botón nuevo juego
     dibujar(); //Dibuja el tablero
     dibujarMatriz(); //Dibuja la matriz
     turnos(); //Hace que empiece el juego con la ficha del turno correspondiente
+    document.getElementById('btnGameOver').style.display = 'block';
 };
 
 function movimiento(evento) {
