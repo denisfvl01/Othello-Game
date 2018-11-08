@@ -7,6 +7,12 @@ body {
     margin: 0;
 }
 
+.g{
+    position: fixed;
+    top: 90px;
+    left: 870px;
+}
+
 footer {
     color: white;
     position: fixed;
@@ -23,7 +29,7 @@ li {
 
 .contenedorLateral {
     position: absolute;
-    top: 14px;
+    top: 20px;
     right: 390px;
     width: 61px;
     color: white;
