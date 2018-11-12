@@ -419,5 +419,15 @@ function finJuego() {
     } else {
         alert(mensajesJ.empate);
     }
-    location.reload();
+   
+    if(fNegras < fBlancas || fBlancas < fNegras){
+        var confirmacion = confirm("Desea guardar los datos");
+            if(confirmacion){
+                alert("Aceptar");
+
+            }else{
+                alert("CANCEL");
+            }
+     // location.reload();
+    }
 }
